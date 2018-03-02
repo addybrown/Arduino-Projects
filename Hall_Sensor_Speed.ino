@@ -1,16 +1,23 @@
 
+/*
+
+Takes a hall sensor input from a motor and is able to convert to the rpm, plan to add multi-input for less noise and better tracking
+
+*/
+
 volatile int count = 0;//if the interrupt will change this value, it must be volatile
 
 float fRevolutions=0;
 float countConvert;
+int hall_sensor_pin=2;
 
 float rpm;
 unsigned long timeold;
 
 
 void setup() {
- pinMode(2, INPUT); //set as input
- digitalWrite(2, HIGH);//enable internal pullup resistor
+ pinMode(hall_sensor_pin, INPUT); //set as input
+ digitalWrite(hall_sensor_pin, HIGH);//enable internal pullup resistor
  attachInterrupt(digitalPinToInterrupt(2), interruptName, RISING);//Interrupt initialization
  
   timeold = 0;
